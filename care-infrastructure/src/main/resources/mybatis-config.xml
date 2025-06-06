@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+     | Global configuration settings
+     |
+     | Available options (default values and descriptions):
+     |
+     | aggressiveLazyLoading     true: If true, all lazy properties are loaded when any is accessed.
+     | multipleResultSetsEnabled true: Allow returning multiple result sets (depends on driver support).
+     | useColumnLabel            true: Use column labels instead of column names.
+     | useGeneratedKeys          false: Allow JDBC to generate primary keys (driver support required).
+     | autoMappingBehavior       PARTIAL: Control automatic mapping of fields to properties.
+     | defaultExecutorType       SIMPLE: Execution strategy. Options: SIMPLE, REUSE, BATCH.
+     | defaultStatementTimeout   null: Timeout (in seconds) for statement execution.
+    -->
+    <settings>
+        <!-- Enable or disable global caching for all mappers -->
+        <setting name="cacheEnabled" value="true"/>
+
+        <!-- Enable or disable lazy loading globally -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+
+        <!-- Allow multiple result sets from a single query -->
+        <setting name="multipleResultSetsEnabled" value="true"/>
+
+        <!-- Use column labels (instead of column names) in result mapping -->
+        <setting name="useColumnLabel" value="true"/>
+
+        <!-- Do not override custom primary key values (e.g., UUIDs) with generated ones -->
+        <setting name="useGeneratedKeys" value="false"/>
+
+        <!-- Automatically map simple fields (no nested mappings) -->
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+
+        <!-- Enable SQL caching for batch updates to improve performance -->
+        <!-- <setting name="defaultExecutorType" value="BATCH" /> -->
+
+        <!-- Set timeout for statement execution (in seconds) -->
+        <!-- <setting name="defaultStatementTimeout" value="25000" /> -->
+
+        <!-- Allow RowBounds usage in nested queries -->
+        <setting name="safeRowBoundsEnabled" value="false"/>
+
+        <!-- Map database columns like A_COLUMN to Java fields like aColumn -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!-- Use SESSION-level cache to avoid circular references and improve nested query performance -->
+        <setting name="localCacheScope" value="SESSION"/>
+
+        <!-- JDBC type to use for null values when none is explicitly provided -->
+        <setting name="jdbcTypeForNull" value="OTHER"/>
+
+        <!-- Methods that trigger lazy loading -->
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+
+        <!-- Load only specified fields of associated objects to improve performance -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+
+        <!-- Reuse prepared statements when possible -->
+        <setting name="defaultExecutorType" value="REUSE"/>
+
+        <!-- Set query timeout to 25 seconds -->
+        <setting name="defaultStatementTimeout" value="25000"/>
+
+        <!-- Log all executed SQL statements using Log4j2 -->
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+</configuration>
