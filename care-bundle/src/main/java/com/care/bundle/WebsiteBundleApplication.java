@@ -1,9 +1,9 @@
-package com.website.bundle;
+package com.care.bundle;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.website"})
+@SpringBootApplication(scanBasePackages = {"com.care"})
 public class WebsiteBundleApplication {
 
     public static void main(String[] args) {

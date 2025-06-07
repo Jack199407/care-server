@@ -1,3 +1,5 @@
+logs/
+
 care-web/HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar

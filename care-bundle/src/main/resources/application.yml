@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: care-app
+logging:
+  config: classpath:logback-spring.xml

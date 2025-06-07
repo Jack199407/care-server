@@ -1,4 +1,4 @@
-package com.website.infrastructure.configuration;
+package com.care.infrastructure.configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @PropertySource("classpath:jdbc-mysql.properties")
 @MapperScan(
-        basePackages = "com.website.infrastructure.repository.mapper.care",
+        basePackages = "com.care.infrastructure.repository.mapper.care",
         sqlSessionFactoryRef = "careSqlSessionFactory"
 )
 public class DataSourceConfiguration {

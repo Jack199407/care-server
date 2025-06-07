@@ -17,9 +17,9 @@ echo "PORT: $APP_PORT"
 echo "CONFIG_DIR: $CONFIG_DIR"
 echo "LOG_DIR: $LOG_DIR"
 
-# Start application
+# Start application with LOG_PATH passed to logback-spring.xml
 exec java $JAVA_OPTS \
+  -DLOG_PATH="$LOG_DIR" \
   -jar "$APP_NAME" \
   --server.port="$APP_PORT" \
-  --spring.config.additional-location="$CONFIG_DIR/" \
-  --logging.file.path="$LOG_DIR"
+  --spring.config.additional-location="$CONFIG_DIR/"
