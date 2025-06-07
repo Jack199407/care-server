@@ -15,7 +15,7 @@ pipeline {
                 script {
                     sh 'docker stop care-app || true'
                     sh 'docker rm care-app || true'
-                    sh 'docker run -d -p 8080:8080 --name care-app care-app'
+                    sh 'docker run -d -p 8081:8080 --name care-app care-app'
                 }
             }
         }
