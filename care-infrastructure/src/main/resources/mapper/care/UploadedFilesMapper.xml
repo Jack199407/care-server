@@ -14,5 +14,36 @@
   <sql id="Base_Column_List">
     id, file_number, original_name, s3_url, create_at, update_at
   </sql>
+  <insert id="insertBatch">
+    INSERT ignore INTO uploaded_files (
+        file_number, original_name, s3_url, create_at, update_at
+    ) VALUES
+    <foreach collection="list" item="item" separator=",">
+      (
+      #{item.fileNumber},
+      #{item.originalName},
+      #{item.s3Url},
+      #{item.createAt},
+      #{item.updateAt}
+      )
+    </foreach>
+  </insert>
+  <select id="selectByFileNumber" resultType="com.care.infrastructure.repository.model.care.UploadedFiles">
+    SELECT
+      file_number,
+      original_name,
+      s3_url
+    FROM uploaded_files
+    WHERE file_number = #{fileNumber}
+  </select>
+  <delete id="deleteByFileNumber">
+    DELETE FROM uploaded_files
+    WHERE file_number = #{fileNumber}
+  </delete>
 
+  <select id="selectAllFiles" resultType="com.care.infrastructure.repository.model.care.UploadedFiles">
+    SELECT file_number, original_name
+    FROM uploaded_files
+    ORDER BY create_at DESC
+  </select>
 </mapper>
