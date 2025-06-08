@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/admin/care")
 @Log4j2
 @RequiredArgsConstructor
-public class FileController {
+public class AdminFileController {
 
     private final S3Uploader s3Uploader;
 
