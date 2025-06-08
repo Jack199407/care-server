@@ -18,7 +18,7 @@
     INSERT ignore INTO uploaded_files (
         file_number, original_name, s3_url, create_at, update_at
     ) VALUES
-    <foreach collection="list" item="item" separator=",">
+    <foreach collection="uploadedFiles" item="item" separator=",">
       (
       #{item.fileNumber},
       #{item.originalName},
