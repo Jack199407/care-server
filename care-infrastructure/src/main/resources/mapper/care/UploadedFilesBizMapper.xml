@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.care.infrastructure.repository.mapper.care.UploadedFilesMapper">
+<mapper namespace="com.care.infrastructure.repository.mapper.care.UploadedFilesBizMapper">
   <resultMap id="BaseResultMap" type="com.care.infrastructure.repository.model.care.UploadedFiles">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="file_number" jdbcType="BIGINT" property="fileNumber" />

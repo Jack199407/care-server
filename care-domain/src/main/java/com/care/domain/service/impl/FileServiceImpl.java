@@ -3,7 +3,7 @@ package com.care.domain.service.impl;
 import com.care.domain.dto.FileDownloadResult;
 import com.care.domain.dto.UploadedFileDto;
 import com.care.domain.service.FileService;
-import com.care.infrastructure.repository.mapper.care.UploadedFilesMapper;
+import com.care.infrastructure.repository.mapper.care.UploadedFilesBizMapper;
 import com.care.infrastructure.repository.model.care.UploadedFiles;
 import com.care.infrastructure.utils.S3Uploader;
 import com.care.infrastructure.utils.SnowFlakeIDGenerator;
@@ -24,7 +24,7 @@ public class FileServiceImpl implements FileService {
     @Resource
     private S3Uploader s3Uploader;
     @Resource
-    private UploadedFilesMapper uploadedFilesMapper;
+    private UploadedFilesBizMapper uploadedFilesBizMapper;
     @Transactional(rollbackFor = Exception.class, transactionManager = "careTransactionManager")
     @Override
     public String uploadFile(String name, MultipartFile file) {
@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService {
 
             // insert into db
             UploadedFiles uploadedFiles = generateUploadedFiles(name, SnowFlakeIDGenerator.nextNumber(), s3Url);
-            uploadedFilesMapper.insertBatch(Collections.singletonList(uploadedFiles));
+            uploadedFilesBizMapper.insertBatch(Collections.singletonList(uploadedFiles));
 
             return s3Url;
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public void deleteFile(Long fileNumber) {
         // 1. query if the file exist
-        UploadedFiles file = uploadedFilesMapper.selectByFileNumber(fileNumber);
+        UploadedFiles file = uploadedFilesBizMapper.selectByFileNumber(fileNumber);
         if (file == null) {
             throw new RuntimeException("File not found: " + fileNumber);
         }
@@ -75,7 +75,7 @@ public class FileServiceImpl implements FileService {
             log.info("S3 file deleted: {}", s3Key);
 
             // 3. delete db
-            uploadedFilesMapper.deleteByFileNumber(fileNumber);
+            uploadedFilesBizMapper.deleteByFileNumber(fileNumber);
 
         } catch (Exception e) {
             log.error("Failed to delete file from S3 or DB", e);
@@ -85,7 +85,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public FileDownloadResult downloadFile(Long fileNumber) {
-        UploadedFiles file = uploadedFilesMapper.selectByFileNumber(fileNumber);
+        UploadedFiles file = uploadedFilesBizMapper.selectByFileNumber(fileNumber);
         if (file == null || file.getS3Url() == null) {
             throw new RuntimeException("File not found in DB");
         }
@@ -98,7 +98,7 @@ public class FileServiceImpl implements FileService {
     }
     @Override
     public List<UploadedFileDto> listAllFiles() {
-        List<UploadedFiles> files = uploadedFilesMapper.selectAllFiles();
+        List<UploadedFiles> files = uploadedFilesBizMapper.selectAllFiles();
 
         return files.stream().map(f -> {
             return new UploadedFileDto(f.getFileNumber(), f.getOriginalName());
@@ -107,7 +107,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public UploadedFiles getFileMeta(Long fileNumber) {
-        return uploadedFilesMapper.selectByFileNumber(fileNumber);
+        return uploadedFilesBizMapper.selectByFileNumber(fileNumber);
     }
 
     private UploadedFiles generateUploadedFiles(String name, Long fileNumber, String url) {

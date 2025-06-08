@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.infrastructure.repository.mapper.care.RolesBizMapper">
+  <resultMap id="BaseResultMap" type="com.care.infrastructure.repository.model.care.Roles">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_type" jdbcType="VARCHAR" property="roleType" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
+    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
+    <result column="delete_at" jdbcType="BIGINT" property="deleteAt" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.care.infrastructure.repository.model.care.Roles">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, role_type, role_name, create_at, update_at, delete_at
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from roles
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

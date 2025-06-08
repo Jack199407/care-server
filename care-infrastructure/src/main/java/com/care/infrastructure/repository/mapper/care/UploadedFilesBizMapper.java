@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface UploadedFilesMapper {
+public interface UploadedFilesBizMapper {
 
     void insertBatch(@Param("uploadedFiles") List<UploadedFiles> uploadedFiles);
 

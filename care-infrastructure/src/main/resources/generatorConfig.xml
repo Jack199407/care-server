@@ -27,10 +27,88 @@
                 targetProject="src/main/java" type="XMLMAPPER">
         </javaClientGenerator>
 
-        <table tableName="uploaded_files" enableCountByExample="false"
+        <table tableName="users"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="user_role"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="roles"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="permissions"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="role_permission"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="comments"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+
+        <table tableName="questions"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="false"
+               enableDeleteByPrimaryKey="false"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
         </table>
     </context>
 </generatorConfiguration>
