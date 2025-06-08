@@ -15,7 +15,6 @@
     <name>care-domain</name>
 
     <dependencies>
-        <!-- 引入基础设施模块 -->
         <dependency>
             <groupId>com.infrastructure</groupId>
             <artifactId>care-infrastructure</artifactId>

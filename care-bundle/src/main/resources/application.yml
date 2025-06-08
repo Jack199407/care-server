@@ -1,5 +1,14 @@
 spring:
   application:
     name: care-app
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 logging:
   config: classpath:logback-spring.xml
+# AWS
+aws:
+  region: us-east-1
+  s3:
+    bucket: my-ke-practice-bucket
