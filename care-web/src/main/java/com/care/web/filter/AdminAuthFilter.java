@@ -15,6 +15,11 @@ public class AdminAuthFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+        httpResponse.setHeader("Access-Control-Allow-Origin", "https://havrebene.com");
+        httpResponse.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+        httpResponse.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type");
+        httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
+
         String authHeader = httpRequest.getHeader("Authorization");
         String requestUri = httpRequest.getRequestURI();
 
