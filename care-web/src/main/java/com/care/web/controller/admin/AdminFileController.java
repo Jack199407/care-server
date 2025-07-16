@@ -1,6 +1,5 @@
 package com.care.web.controller.admin;
 
-import com.care.domain.dto.FileDownloadResult;
 import com.care.domain.dto.UploadedFileDto;
 import com.care.domain.service.FileService;
 import lombok.extern.log4j.Log4j2;
@@ -39,20 +38,6 @@ public class AdminFileController {
         } catch (Exception e) {
             log.error("File deletion failed", e);
             return ResponseEntity.internalServerError().body("Delete failed: " + e.getMessage());
-        }
-    }
-
-    @GetMapping("/download")
-    public ResponseEntity<byte[]> downloadFile(@RequestParam("fileNumber") Long fileNumber) {
-        try {
-            FileDownloadResult result = fileService.downloadFile(fileNumber);
-            return ResponseEntity.ok()
-                    .header("Content-Disposition", "attachment; filename=\"" + result.getRealFilename() + "\"")
-                    .body(result.getData());
-
-        } catch (Exception e) {
-            log.error("File download failed", e);
-            return ResponseEntity.internalServerError().body(null);
         }
     }
 
