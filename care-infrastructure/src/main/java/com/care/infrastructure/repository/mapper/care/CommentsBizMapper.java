@@ -1,7 +1,15 @@
 package com.care.infrastructure.repository.mapper.care;
 
 import com.care.infrastructure.repository.model.care.Comments;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommentsBizMapper {
-    Comments selectByPrimaryKey(Integer id);
+    List<Comments> selectByCondition(@Param("offset") int offset,
+                                     @Param("limit") int limit,
+                                     @Param("displayList") List<Boolean> displayList);
+
+    int countByCondition(@Param("displayList") List<Boolean> displayList);
+
 }

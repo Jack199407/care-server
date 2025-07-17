@@ -18,12 +18,32 @@
   <sql id="Blob_Column_List">
     content
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from comments
-    where id = #{id,jdbcType=INTEGER}
+  <select id="selectByCondition" resultMap="ResultMapWithBLOBs">
+    SELECT
+    <include refid="Base_Column_List"/>,
+    <include refid="Blob_Column_List"/>
+    FROM comments
+    WHERE delete_at = 0
+    <if test="displayList != null and displayList.size > 0">
+      AND display IN
+      <foreach item="item" index="index" collection="displayList" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    ORDER BY create_at DESC
+    LIMIT #{offset}, #{limit}
   </select>
+
+  <select id="countByCondition" resultType="int">
+    SELECT COUNT(*)
+    FROM comments
+    WHERE delete_at = 0
+    <if test="displayList != null and displayList.size > 0">
+      AND display IN
+      <foreach item="item" index="index" collection="displayList" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+  </select>
+
 </mapper>
