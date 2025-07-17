@@ -57,4 +57,10 @@
     WHERE id = #{id} AND delete_at = 0
   </update>
 
+  <update id="deleteById">
+    UPDATE comments
+    SET delete_at = UNIX_TIMESTAMP(), update_at = NOW()
+    WHERE id = #{id} AND delete_at = 0
+  </update>
+
 </mapper>

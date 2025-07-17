@@ -12,4 +12,6 @@ public interface CommentsService {
     void addComment(CommentCreateRequest request);
 
     void updateDisplay(CommentUpdateDisplayRequest request);
+
+    void deleteById(Integer id);
 }

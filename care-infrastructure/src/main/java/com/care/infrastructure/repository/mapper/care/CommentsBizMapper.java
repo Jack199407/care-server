@@ -16,4 +16,6 @@ public interface CommentsBizMapper {
 
     int updateDisplayById(@Param("id") Integer id, @Param("display") Boolean display);
 
+    int deleteById(@Param("id") Integer id);
+
 }

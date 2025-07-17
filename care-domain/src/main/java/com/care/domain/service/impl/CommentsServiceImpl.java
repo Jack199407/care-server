@@ -70,4 +70,12 @@ public class CommentsServiceImpl implements CommentsService {
             throw new IllegalArgumentException("Comment not found or already deleted: id=" + request.getId());
         }
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        int rows = commentsBizMapper.deleteById(id);
+        if (rows == 0) {
+            throw new IllegalArgumentException("Comment not found or already deleted: id=" + id);
+        }
+    }
 }

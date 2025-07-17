@@ -15,19 +15,19 @@ import javax.annotation.Resource;
 import java.util.Collections;
 
 @RestController
-@RequestMapping("/care/")
+@RequestMapping("/care/comments")
 public class CommentsController {
     @Resource
     private CommentsService commentsService;
 
-    @PostMapping("/comments/list")
+    @PostMapping("/list")
     public ResponseEntity<PageResult<CommentResponse>> listComments(@RequestBody CommentQueryRequest request) {
         request.setDisplay(Collections.singletonList(true));
         PageResult<CommentResponse> result = commentsService.getCommentsByPage(request);
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/comments/add")
+    @PostMapping("/add")
     public ResponseEntity<?> addComment(@RequestBody CommentCreateRequest request) {
         commentsService.addComment(request);
         return ResponseEntity.ok("Comment added successfully");
