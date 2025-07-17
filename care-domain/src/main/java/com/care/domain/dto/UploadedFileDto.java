@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UploadedFileDto {
-    private Long fileNumber;
+    private String fileNumber;
     private String originalName;
 }

@@ -100,9 +100,8 @@ public class FileServiceImpl implements FileService {
     public List<UploadedFileDto> listAllFiles() {
         List<UploadedFiles> files = uploadedFilesBizMapper.selectAllFiles();
 
-        return files.stream().map(f -> {
-            return new UploadedFileDto(f.getFileNumber(), f.getOriginalName());
-        }).collect(Collectors.toList());
+        return files.stream().map(f -> new UploadedFileDto(f.getFileNumber().toString(),
+                f.getOriginalName())).collect(Collectors.toList());
     }
 
     @Override
