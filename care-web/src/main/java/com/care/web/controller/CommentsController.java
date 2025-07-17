@@ -1,5 +1,6 @@
 package com.care.web.controller;
 
+import com.care.domain.dto.CommentCreateRequest;
 import com.care.domain.dto.CommentQueryRequest;
 import com.care.domain.dto.CommentResponse;
 import com.care.domain.service.CommentsService;
@@ -24,5 +25,11 @@ public class CommentsController {
         request.setDisplay(Collections.singletonList(true));
         PageResult<CommentResponse> result = commentsService.getCommentsByPage(request);
         return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/comments/add")
+    public ResponseEntity<?> addComment(@RequestBody CommentCreateRequest request) {
+        commentsService.addComment(request);
+        return ResponseEntity.ok("Comment added successfully");
     }
 }

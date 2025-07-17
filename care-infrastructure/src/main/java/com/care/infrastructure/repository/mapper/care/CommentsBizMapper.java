@@ -12,4 +12,8 @@ public interface CommentsBizMapper {
 
     int countByCondition(@Param("displayList") List<Boolean> displayList);
 
+    int insertComment(Comments comment);
+
+    int updateDisplayById(@Param("id") Integer id, @Param("display") Boolean display);
+
 }

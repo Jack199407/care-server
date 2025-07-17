@@ -46,4 +46,15 @@
     </if>
   </select>
 
+  <insert id="insertComment" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO comments (star, content, display, create_at, update_at, delete_at)
+    VALUES (#{star}, #{content}, #{display}, NOW(), NOW(), 0)
+  </insert>
+
+  <update id="updateDisplayById">
+    UPDATE comments
+    SET display = #{display}, update_at = NOW()
+    WHERE id = #{id} AND delete_at = 0
+  </update>
+
 </mapper>

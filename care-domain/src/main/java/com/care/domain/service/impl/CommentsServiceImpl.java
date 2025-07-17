@@ -1,7 +1,9 @@
 package com.care.domain.service.impl;
 
+import com.care.domain.dto.CommentCreateRequest;
 import com.care.domain.dto.CommentQueryRequest;
 import com.care.domain.dto.CommentResponse;
+import com.care.domain.dto.CommentUpdateDisplayRequest;
 import com.care.domain.service.CommentsService;
 import com.care.infrastructure.repository.mapper.care.CommentsBizMapper;
 import com.care.infrastructure.repository.model.care.Comments;
@@ -11,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -44,5 +47,27 @@ public class CommentsServiceImpl implements CommentsService {
         result.setPageNum(request.getPageNum());
         result.setPageSize(request.getPageSize());
         return result;
+    }
+
+    @Override
+    public void addComment(CommentCreateRequest request) {
+        // default value for display is false
+        Comments comment = new Comments();
+        comment.setStar(request.getStar());
+        comment.setContent(request.getContent());
+        comment.setDisplay(false);
+        comment.setCreateAt(LocalDateTime.now());
+        comment.setUpdateAt(LocalDateTime.now());
+        comment.setDeleteAt(0L);
+
+        commentsBizMapper.insertComment(comment);
+    }
+
+    @Override
+    public void updateDisplay(CommentUpdateDisplayRequest request) {
+        int rows = commentsBizMapper.updateDisplayById(request.getId(), request.getDisplay());
+        if (rows == 0) {
+            throw new IllegalArgumentException("Comment not found or already deleted: id=" + request.getId());
+        }
     }
 }

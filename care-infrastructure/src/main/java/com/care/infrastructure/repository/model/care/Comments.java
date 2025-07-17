@@ -1,17 +1,17 @@
 package com.care.infrastructure.repository.model.care;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Comments {
     private Integer id;
 
-    private Byte star;
+    private Integer star;
 
     private Boolean display;
 
-    private Date createAt;
+    private LocalDateTime createAt;
 
-    private Date updateAt;
+    private LocalDateTime updateAt;
 
     private Long deleteAt;
 
@@ -25,11 +25,11 @@ public class Comments {
         this.id = id;
     }
 
-    public Byte getStar() {
+    public Integer getStar() {
         return star;
     }
 
-    public void setStar(Byte star) {
+    public void setStar(Integer star) {
         this.star = star;
     }
 
@@ -41,19 +41,19 @@ public class Comments {
         this.display = display;
     }
 
-    public Date getCreateAt() {
+    public LocalDateTime getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Date createAt) {
+    public void setCreateAt(LocalDateTime createAt) {
         this.createAt = createAt;
     }
 
-    public Date getUpdateAt() {
+    public LocalDateTime getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
+    public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
     }
 
