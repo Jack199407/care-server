@@ -92,7 +92,8 @@ public class FileServiceImpl implements FileService {
 
         String key = s3Uploader.extractKeyFromUrl(file.getS3Url());
         byte[] bytes = s3Uploader.downloadFile(key);
-        String realFilename = key.substring(key.lastIndexOf("-") + 1);
+
+        String realFilename = file.getOriginalName();
 
         return new FileDownloadResult(bytes, realFilename);
     }
@@ -112,7 +113,23 @@ public class FileServiceImpl implements FileService {
     private UploadedFiles generateUploadedFiles(String name, Long fileNumber, String url) {
         UploadedFiles files = new UploadedFiles();
         files.setFileNumber(fileNumber);
-        files.setOriginalName(name);
+
+        String extension = "";
+        if (url != null && url.contains(".")) {
+            int lastDotIndex = url.lastIndexOf('.');
+            int lastSlashIndex = url.lastIndexOf('/');
+
+            if (lastDotIndex > lastSlashIndex) {
+                extension = url.substring(lastDotIndex);
+            }
+        }
+
+        String finalName = name;
+        if (!name.endsWith(extension)) {
+            finalName += extension;
+        }
+
+        files.setOriginalName(finalName);
         files.setS3Url(url);
         return files;
     }
