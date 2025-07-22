@@ -53,6 +53,7 @@ public class CommentsServiceImpl implements CommentsService {
     public void addComment(CommentCreateRequest request) {
         // default value for display is false
         Comments comment = new Comments();
+        comment.setId(request.getStar());
         comment.setStar(request.getStar());
         comment.setContent(request.getContent());
         comment.setDisplay(false);
